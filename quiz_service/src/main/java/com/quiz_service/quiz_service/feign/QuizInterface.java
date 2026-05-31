@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.quiz_service.quiz_service.models.QuestionWrapper;
 import com.quiz_service.quiz_service.models.Response;
 
-@FeignClient(name="QUESTION_SERVICE")
+@FeignClient(name="question-service")
 public interface QuizInterface {
-  @GetMapping("/generate-quetion-ids")
+  @GetMapping("/questions/generate-quetion-ids")
   public ResponseEntity<List<Integer>> generateQuestions(@RequestParam String category, @RequestParam Integer numQuestions);
 
-  @PostMapping("/get-questions-by-ids")
-  public ResponseEntity<List<QuestionWrapper>> getQuestionsByIds(@RequestBody List<Integer> questionIds);
+  @PostMapping("/questions/get-questions-by-ids")
+  public ResponseEntity<List<QuestionWrapper>> getQuestionsById(@RequestBody List<Integer> questionIds);
 
-  @PostMapping("/get-score")
+  @PostMapping("/questions/get-score")
   public ResponseEntity<Integer> calculateScore(@RequestBody List<Response> responses);
 }
